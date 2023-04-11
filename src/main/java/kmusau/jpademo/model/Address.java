@@ -1,5 +1,6 @@
 package kmusau.jpademo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,5 +19,6 @@ public class Address {
     private String town;
 
     @OneToOne(mappedBy = "address")
+    @JsonIgnore
     private Person person;
 }
