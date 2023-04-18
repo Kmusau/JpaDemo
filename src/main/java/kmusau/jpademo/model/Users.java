@@ -21,6 +21,6 @@ public class Users {
     private String lastName;
 
     @ManyToMany
-    @JoinTable(name = "wishlist", joinColumns = @JoinColumn(name = "userid"), inverseJoinColumns = @JoinColumn(name = "musicid"))
+    @JoinTable(name = "favourites", joinColumns = @JoinColumn(name = "userid"), inverseJoinColumns = @JoinColumn(name = "musicid"))
     private List<Music> music;
 }

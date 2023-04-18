@@ -1,11 +1,8 @@
 package kmusau.jpademo.controller;
 
-import kmusau.jpademo.model.Course;
-import kmusau.jpademo.model.Person;
-import kmusau.jpademo.model.Students;
-import kmusau.jpademo.service.CourseService;
-import kmusau.jpademo.service.PersonService;
-import kmusau.jpademo.service.StudentsService;
+import kmusau.jpademo.model.*;
+import kmusau.jpademo.repository.AddressRepository;
+import kmusau.jpademo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +22,15 @@ public class Controller {
     @Autowired
     CourseService courseService;
 
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    MusicService musicService;
+
+    @Autowired
+    AddressRepository addressRepo;
+
     @GetMapping("/hello")
     public String hello() {
         return "Welcome message";
@@ -33,6 +39,11 @@ public class Controller {
     @GetMapping("/persons")
     public List<Person> fetchAllPersons() {
         return personService.getAllPersons();
+    }
+
+    @GetMapping("/address")
+    public List<Address> getAddresses(){
+        return addressRepo.findAll();
     }
 
     @PostMapping("add/person")
@@ -58,5 +69,25 @@ public class Controller {
     @PostMapping("/add/course")
     public Course createACourse(@RequestBody Course course) {
         return courseService.createCourse(course);
+    }
+
+    @GetMapping("/users")
+    public List<Users> getAllUsers() {
+        return userService.getAllUsers();
+    }
+
+    @PostMapping("/add/user")
+    public Users addUser(@RequestBody Users user) {
+        return userService.addUser(user);
+    }
+
+    @GetMapping("/songs")
+    public List<Music> getAllSongs() {
+        return musicService.getAllSongs();
+    }
+
+    @PostMapping("/add/song")
+    public Music addSong(@RequestBody Music music) {
+        return musicService.addSong(music);
     }
 }
