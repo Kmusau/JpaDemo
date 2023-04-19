@@ -4,10 +4,7 @@ import kmusau.jpademo.model.*;
 import kmusau.jpademo.repository.AddressRepository;
 import kmusau.jpademo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -89,5 +86,10 @@ public class Controller {
     @PostMapping("/add/song")
     public Music addSong(@RequestBody Music music) {
         return musicService.addSong(music);
+    }
+
+    @PutMapping("/updatemusic/{musicId}")
+    public Music updateSongTitle(@RequestBody Music music, @PathVariable int musicId) {
+       return musicService.updateName(music, musicId);
     }
 }
